@@ -25,10 +25,10 @@ make install
 
 ## Usage
 
-The tool provides a `generate` command to create ID mappings:
+The tool provides a `map` command to create ID mappings:
 
 ```bash
-pveidmapper generate -i <mapping>
+pveidmapper map -i <mapping>
 ```
 
 ### Mapping Format
@@ -42,26 +42,51 @@ containeruid[:containergid][=hostuid[:hostgid]]
 
 1. Map a single UID:
 ```bash
-pveidmapper generate -i 1000=1000
+pveidmapper map -i 1000=1000
 ```
 
 2. Map both UID and GID:
 ```bash
-pveidmapper generate -i 1000:1000=1000:1000
+pveidmapper map -i 1000:1000
+```
+Output:
+```
+# Add to /etc/pve/lxc/<container_id>.conf:
+lxc.idmap: u 0 100000 1000
+lxc.idmap: u 1000 1000 1
+lxc.idmap: u 1001 101001 64535
+lxc.idmap: g 0 100000 1000
+lxc.idmap: g 1000 1000 1
+lxc.idmap: g 1001 101001 64535
+
+# Add to /etc/subuid:
+root:1000:1
+
+# Add to /etc/subgid:
+root:1000:1
 ```
 
 3. Map multiple IDs:
 ```bash
-pveidmapper generate -i 1000=1000 -i 1001=1001
+pveidmapper map -i 1000=1000 -i 1001=1001
 ```
 
-### Output
+### Configuration Files
 
-The tool generates three sections of configuration:
+The tool generates configuration that needs to be added to three different files:
 
-1. Container configuration to add to `/etc/pve/lxc/<container_id>.conf`
-2. User ID mappings to add to `/etc/subuid`
-3. Group ID mappings to add to `/etc/subgid`
+1. Container configuration file:
+   - Path: `/etc/pve/lxc/<container_id>.conf`
+   - Replace `<container_id>` with your actual container ID
+   - Add the `lxc.idmap` lines to this file
+
+2. User ID mappings:
+   - Path: `/etc/subuid`
+   - Add the `root:UID:1` lines to this file
+
+3. Group ID mappings:
+   - Path: `/etc/subgid`
+   - Add the `root:GID:1` lines to this file
 
 ## Development
 

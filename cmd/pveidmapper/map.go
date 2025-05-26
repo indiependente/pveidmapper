@@ -8,17 +8,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var generateCmd = &cobra.Command{
-	Use:   "generate",
-	Short: "Generate ID mappings for a PVE LXC container",
-	Long: `Generate the necessary ID mappings for a Proxmox VE LXC container.
+var mapCmd = &cobra.Command{
+	Use:   "map",
+	Short: "Map ID mappings for a PVE LXC container",
+	Long: `Map the necessary ID mappings for a Proxmox VE LXC container.
 The command takes one or more ID mappings in the format:
   containeruid[:containergid][=hostuid[:hostgid]]
 
 Examples:
-  pveidmapper generate -i 1000=1000
-  pveidmapper generate -i 1000:1000=1000:1000
-  pveidmapper generate -i 1000=1000 -i 1001=1001`,
+  pveidmapper map -i 1000=1000
+  pveidmapper map -i 1000:1000=1000:1000
+  pveidmapper map -i 1000=1000 -i 1001=1001`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		ids, err := cmd.Flags().GetStringArray("id")
 		if err != nil {
@@ -77,7 +77,7 @@ Examples:
 }
 
 func init() {
-	rootCmd.AddCommand(generateCmd)
-	generateCmd.Flags().StringArrayP("id", "i", []string{}, "containeruid[:containergid][=hostuid[:hostgid]]")
-	generateCmd.MarkFlagRequired("id")
+	rootCmd.AddCommand(mapCmd)
+	mapCmd.Flags().StringArrayP("id", "i", []string{}, "containeruid[:containergid][=hostuid[:hostgid]]")
+	mapCmd.MarkFlagRequired("id")
 }
