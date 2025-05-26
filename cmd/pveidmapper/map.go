@@ -79,5 +79,8 @@ Examples:
 func init() {
 	rootCmd.AddCommand(mapCmd)
 	mapCmd.Flags().StringArrayP("id", "i", []string{}, "containeruid[:containergid][=hostuid[:hostgid]]")
-	mapCmd.MarkFlagRequired("id")
+	err := mapCmd.MarkFlagRequired("id")
+	if err != nil {
+		panic(err)
+	}
 }

@@ -1,4 +1,4 @@
-.PHONY: build install clean test
+.PHONY: build install clean test lint lint-fix
 
 # Go parameters
 GOCMD=go
@@ -39,4 +39,12 @@ tidy:
 # Update dependencies
 update:
 	$(GOGET) -u ./...
-	$(GOMOD) tidy 
+	$(GOMOD) tidy
+
+# Run linter
+lint:
+	golangci-lint run
+
+# Run linter with auto-fix
+lint-fix:
+	golangci-lint run --fix 

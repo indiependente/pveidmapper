@@ -94,6 +94,7 @@ The tool generates configuration that needs to be added to three different files
 
 - Go 1.21 or later
 - Make (optional, for using the Makefile)
+- golangci-lint (for code quality checks)
 
 ### Common Tasks
 
@@ -112,10 +113,32 @@ make install
 make test
 ```
 
+- Run linter:
+```bash
+make lint
+```
+
+- Run linter with auto-fix:
+```bash
+make lint-fix
+```
+
 - Update dependencies:
 ```bash
 make update
 ```
+
+### Code Quality
+
+This project uses golangci-lint for code quality checks. The configuration can be found in `.golangci.yml`. The linter checks for:
+
+- Code style and formatting
+- Common programming mistakes
+- Potential bugs
+- Security issues
+- Performance issues
+- Code complexity
+- Duplicate code
 
 ## License
 
