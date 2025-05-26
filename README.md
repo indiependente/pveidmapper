@@ -1,5 +1,5 @@
-![Go Report Card](https://goreportcard.com/badge/github.com/indiependente/pveidmapper)](https://goreportcard.com/report/github.com/indiependente/pveidmapper)
-[![Workflow Status](https://github.com/indiependente/pveidmapper/workflows/lint-test/badge.svg)](https://github.com/indiependente/pveidmapper/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/indiependente/pveidmapper)](https://goreportcard.com/report/github.com/indiependente/pveidmapper)
+[![Workflow Status](https://github.com/indiependente/pveidmapper/workflows/ci/badge.svg)](https://github.com/indiependente/pveidmapper/actions)
 
 # PVE ID Mapper
 
