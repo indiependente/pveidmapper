@@ -1,3 +1,6 @@
+![Go Report Card](https://goreportcard.com/badge/github.com/indiependente/pveidmapper)](https://goreportcard.com/report/github.com/indiependente/pveidmapper)
+[![Workflow Status](https://github.com/indiependente/pveidmapper/workflows/lint-test/badge.svg)](https://github.com/indiependente/pveidmapper/actions)
+
 # PVE ID Mapper
 
 A command-line tool for managing UID/GID mappings in Proxmox VE LXC containers. This tool helps generate the necessary configuration for both the container and the host system to properly map user and group IDs.
